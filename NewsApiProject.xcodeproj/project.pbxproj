@@ -15,6 +15,15 @@
 		DB64CF352BFA550100399CD2 /* NewsApiProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF342BFA550100399CD2 /* NewsApiProjectTests.swift */; };
 		DB64CF3F2BFA550200399CD2 /* NewsApiProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF3E2BFA550200399CD2 /* NewsApiProjectUITests.swift */; };
 		DB64CF412BFA550200399CD2 /* NewsApiProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF402BFA550200399CD2 /* NewsApiProjectUITestsLaunchTests.swift */; };
+		DB64CF5E2BFA588800399CD2 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF4E2BFA588800399CD2 /* APIConfig.swift */; };
+		DB64CF5F2BFA588800399CD2 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF4F2BFA588800399CD2 /* Authentication.swift */; };
+		DB64CF602BFA588800399CD2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF502BFA588800399CD2 /* Endpoint.swift */; };
+		DB64CF612BFA588800399CD2 /* EndpointCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF512BFA588800399CD2 /* EndpointCase.swift */; };
+		DB64CF622BFA588800399CD2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF522BFA588800399CD2 /* NetworkError.swift */; };
+		DB64CF632BFA588800399CD2 /* NewsAPIServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF542BFA588800399CD2 /* NewsAPIServiceImplementation.swift */; };
+		DB64CF642BFA588800399CD2 /* NewsAPIServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF562BFA588800399CD2 /* NewsAPIServiceFactory.swift */; };
+		DB64CF652BFA588800399CD2 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF582BFA588800399CD2 /* NewsModel.swift */; };
+		DB64CF662BFA588800399CD2 /* NewsAPIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF5A2BFA588800399CD2 /* NewsAPIServiceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +56,15 @@
 		DB64CF3A2BFA550200399CD2 /* NewsApiProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsApiProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB64CF3E2BFA550200399CD2 /* NewsApiProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiProjectUITests.swift; sourceTree = "<group>"; };
 		DB64CF402BFA550200399CD2 /* NewsApiProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DB64CF4E2BFA588800399CD2 /* APIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		DB64CF4F2BFA588800399CD2 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		DB64CF502BFA588800399CD2 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		DB64CF512BFA588800399CD2 /* EndpointCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointCase.swift; sourceTree = "<group>"; };
+		DB64CF522BFA588800399CD2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		DB64CF542BFA588800399CD2 /* NewsAPIServiceImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAPIServiceImplementation.swift; sourceTree = "<group>"; };
+		DB64CF562BFA588800399CD2 /* NewsAPIServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAPIServiceFactory.swift; sourceTree = "<group>"; };
+		DB64CF582BFA588800399CD2 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		DB64CF5A2BFA588800399CD2 /* NewsAPIServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAPIServiceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +115,7 @@
 		DB64CF1C2BFA54FC00399CD2 /* NewsApiProject */ = {
 			isa = PBXGroup;
 			children = (
+				DB64CF4D2BFA587000399CD2 /* Service */,
 				DB64CF1D2BFA54FC00399CD2 /* AppDelegate.swift */,
 				DB64CF1F2BFA54FC00399CD2 /* SceneDelegate.swift */,
 				DB64CF212BFA54FC00399CD2 /* ViewController.swift */,
@@ -122,6 +141,79 @@
 				DB64CF402BFA550200399CD2 /* NewsApiProjectUITestsLaunchTests.swift */,
 			);
 			path = NewsApiProjectUITests;
+			sourceTree = "<group>";
+		};
+		DB64CF4D2BFA587000399CD2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF5D2BFA588800399CD2 /* NewsAPIService */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DB64CF532BFA588800399CD2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF4E2BFA588800399CD2 /* APIConfig.swift */,
+				DB64CF4F2BFA588800399CD2 /* Authentication.swift */,
+				DB64CF502BFA588800399CD2 /* Endpoint.swift */,
+				DB64CF512BFA588800399CD2 /* EndpointCase.swift */,
+				DB64CF522BFA588800399CD2 /* NetworkError.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DB64CF552BFA588800399CD2 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF532BFA588800399CD2 /* Service */,
+				DB64CF542BFA588800399CD2 /* NewsAPIServiceImplementation.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		DB64CF572BFA588800399CD2 /* Assembler */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF562BFA588800399CD2 /* NewsAPIServiceFactory.swift */,
+			);
+			path = Assembler;
+			sourceTree = "<group>";
+		};
+		DB64CF592BFA588800399CD2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF582BFA588800399CD2 /* NewsModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DB64CF5B2BFA588800399CD2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF5A2BFA588800399CD2 /* NewsAPIServiceProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DB64CF5C2BFA588800399CD2 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF572BFA588800399CD2 /* Assembler */,
+				DB64CF592BFA588800399CD2 /* Data */,
+				DB64CF5B2BFA588800399CD2 /* Protocol */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		DB64CF5D2BFA588800399CD2 /* NewsAPIService */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF552BFA588800399CD2 /* Implementation */,
+				DB64CF5C2BFA588800399CD2 /* Interface */,
+			);
+			name = NewsAPIService;
+			path = ../../../../../../Desktop/Service/NewsApiService/NewsAPIService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +346,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB64CF642BFA588800399CD2 /* NewsAPIServiceFactory.swift in Sources */,
 				DB64CF222BFA54FC00399CD2 /* ViewController.swift in Sources */,
+				DB64CF622BFA588800399CD2 /* NetworkError.swift in Sources */,
+				DB64CF612BFA588800399CD2 /* EndpointCase.swift in Sources */,
 				DB64CF1E2BFA54FC00399CD2 /* AppDelegate.swift in Sources */,
+				DB64CF5E2BFA588800399CD2 /* APIConfig.swift in Sources */,
+				DB64CF652BFA588800399CD2 /* NewsModel.swift in Sources */,
+				DB64CF5F2BFA588800399CD2 /* Authentication.swift in Sources */,
+				DB64CF632BFA588800399CD2 /* NewsAPIServiceImplementation.swift in Sources */,
+				DB64CF662BFA588800399CD2 /* NewsAPIServiceProtocol.swift in Sources */,
+				DB64CF602BFA588800399CD2 /* Endpoint.swift in Sources */,
 				DB64CF202BFA54FC00399CD2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
