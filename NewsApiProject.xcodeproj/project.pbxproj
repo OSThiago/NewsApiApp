@@ -115,12 +115,12 @@
 		DB64CF1C2BFA54FC00399CD2 /* NewsApiProject */ = {
 			isa = PBXGroup;
 			children = (
-				DB64CF832BFA6C6F00399CD2 /* Scenes */,
 				DB64CF822BFA6C3B00399CD2 /* Root */,
-				DB64CF672BFA5D0000399CD2 /* Service */,
+				DB64CF832BFA6C6F00399CD2 /* Scenes */,
 				DB64CF262BFA550100399CD2 /* Assets.xcassets */,
 				DB64CF282BFA550100399CD2 /* LaunchScreen.storyboard */,
 				DB64CF2B2BFA550100399CD2 /* Info.plist */,
+				DB64CF672BFA5D0000399CD2 /* Service */,
 			);
 			path = NewsApiProject;
 			sourceTree = "<group>";
