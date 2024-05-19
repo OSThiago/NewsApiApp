@@ -115,10 +115,9 @@
 		DB64CF1C2BFA54FC00399CD2 /* NewsApiProject */ = {
 			isa = PBXGroup;
 			children = (
+				DB64CF832BFA6C6F00399CD2 /* Scenes */,
+				DB64CF822BFA6C3B00399CD2 /* Root */,
 				DB64CF672BFA5D0000399CD2 /* Service */,
-				DB64CF1D2BFA54FC00399CD2 /* AppDelegate.swift */,
-				DB64CF1F2BFA54FC00399CD2 /* SceneDelegate.swift */,
-				DB64CF212BFA54FC00399CD2 /* ViewController.swift */,
 				DB64CF262BFA550100399CD2 /* Assets.xcassets */,
 				DB64CF282BFA550100399CD2 /* LaunchScreen.storyboard */,
 				DB64CF2B2BFA550100399CD2 /* Info.plist */,
@@ -213,6 +212,31 @@
 				DB64CF802BFA69C100399CD2 /* NetworkError.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		DB64CF822BFA6C3B00399CD2 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF1D2BFA54FC00399CD2 /* AppDelegate.swift */,
+				DB64CF1F2BFA54FC00399CD2 /* SceneDelegate.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		DB64CF832BFA6C6F00399CD2 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF842BFA6C7600399CD2 /* FeedNews */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DB64CF842BFA6C7600399CD2 /* FeedNews */ = {
+			isa = PBXGroup;
+			children = (
+				DB64CF212BFA54FC00399CD2 /* ViewController.swift */,
+			);
+			path = FeedNews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
