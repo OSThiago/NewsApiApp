@@ -21,7 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = FeedViewController(newsService: newsAPIService)
+
+        let feedViewController = UINavigationController(rootViewController: FeedViewController(newsService: newsAPIService))
+        feedViewController.navigationBar.prefersLargeTitles = true
+
+        window?.rootViewController = feedViewController
         window?.makeKeyAndVisible()
     }
 

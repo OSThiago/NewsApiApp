@@ -19,6 +19,7 @@ final class FeedViewController: UIViewController {
         tableView.backgroundColor = .systemBackground
         tableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.identifier)
         tableView.separatorStyle = .none
+        tableView.rowHeight = 300
         return tableView
     }()
     
@@ -35,18 +36,26 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
+
         Task {
             try await viewModel.fetchArticles()
         }
     }
     
     private func setupUI() {
+        setupTitle(title: "News")
+        setupTableView()
+    }
+    
+    private func setupTableView() {
         self.view.addSubview(tableView)
         tableView.frame = view.bounds
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+    }
+    
+    private func setupTitle(title: String) {
+        self.title = title
     }
 }
 
@@ -72,13 +81,14 @@ extension FeedViewController: UITableViewDataSource {
         let article = self.viewModel.articles[indexPath.row]
         
         cell.setupWith(article)
-        
+
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+////        return 300
+//        return UITableView.automaticDimension
+//    }
 }
 
 extension FeedViewController: UITableViewDelegate {
