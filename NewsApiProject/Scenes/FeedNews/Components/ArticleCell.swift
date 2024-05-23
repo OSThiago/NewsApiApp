@@ -34,7 +34,7 @@ class ArticleCell: UITableViewCell {
         self.articleDescription.text = article.description
         
         if let author = article.author {
-            self.author.text = "Author: " + author
+            self.author.text = "By " + author
         }
         
         if let url = URL(string: article.urlToImage ?? "") {
@@ -66,9 +66,9 @@ class ArticleCell: UITableViewCell {
     
     private let author: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = .label.withAlphaComponent(0.6)
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.numberOfLines = 1
         label.text = "Author unnamed"
         return label
@@ -76,9 +76,9 @@ class ArticleCell: UITableViewCell {
     
     private let articleDescription: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = .label.withAlphaComponent(0.8)
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 10, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         label.numberOfLines = 2
         label.lineBreakMode = .byTruncatingTail
         label.text = "Error"
@@ -142,8 +142,8 @@ extension ArticleCell {
         author.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             author.topAnchor.constraint(equalTo: self.articleImage.bottomAnchor, constant: 6),
-            author.leadingAnchor.constraint(equalTo: self.title.leadingAnchor),
-            author.trailingAnchor.constraint(equalTo: self.title.trailingAnchor)
+            author.leadingAnchor.constraint(equalTo: self.articleImage.leadingAnchor),
+            author.trailingAnchor.constraint(equalTo: self.articleImage.trailingAnchor)
         ])
     }
     
@@ -151,8 +151,8 @@ extension ArticleCell {
         articleDescription.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             articleDescription.topAnchor.constraint(equalTo: self.author.bottomAnchor, constant: 4),
-            articleDescription.leadingAnchor.constraint(equalTo: self.author.leadingAnchor),
-            articleDescription.trailingAnchor.constraint(equalTo: self.title.trailingAnchor),
+            articleDescription.leadingAnchor.constraint(equalTo: self.articleImage.leadingAnchor),
+            articleDescription.trailingAnchor.constraint(equalTo: self.articleImage.trailingAnchor),
         ])
     }
 }

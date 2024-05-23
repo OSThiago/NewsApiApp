@@ -26,9 +26,11 @@ final class DetailNewsViewController: UIViewController {
     
     private let articleImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.image = UIImage(systemName: "questionmark")
         imageView.tintColor = .black
+        imageView.layer.cornerRadius = 4
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -71,7 +73,8 @@ final class DetailNewsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 16, weight: .semibold)
+//        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .italicSystemFont(ofSize: 14)
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
         label.sizeToFit()
@@ -191,8 +194,9 @@ extension DetailNewsViewController {
         articleImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             articleImage.topAnchor.constraint(equalTo: self.articlePublishedDate.bottomAnchor, constant: 16),
-            articleImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            articleImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
+            articleImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            articleImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+//            articleImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, constant: -24),
             articleImage.heightAnchor.constraint(equalTo: self.articleImage.widthAnchor, multiplier: 9/16)
         ])
     }

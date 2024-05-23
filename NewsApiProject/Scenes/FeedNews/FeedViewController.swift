@@ -43,7 +43,7 @@ final class FeedViewController: UIViewController {
         tableView.backgroundColor = .systemBackground
         tableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.identifier)
         tableView.separatorStyle = .singleLine
-        tableView.rowHeight = 300
+        tableView.rowHeight = 310
         return tableView
     }()
     
@@ -74,9 +74,9 @@ extension FeedViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.identifier, for: indexPath) as? ArticleCell else {
             fatalError("Unebale to dequeue ArtcleCell in FeedViewController")
         }
-        
+
         let article = self.viewModel.articles[indexPath.row]
-        
+
         cell.setupWith(article)
 
         return cell
@@ -86,14 +86,12 @@ extension FeedViewController: UITableViewDataSource {
 // MARK: - UITableView Delegate
 extension FeedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
 
         let detailViewController = DetailNewsViewController()
+
         detailViewController.setupWith(viewModel.articles[indexPath.row])
 
-//        detailViewController.title = "Detail"
-        
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
