@@ -35,7 +35,9 @@ final class FeedViewModel: FeedViewModelProtocol {
     func fetchArticles() async throws {
         do {
             let news = try await newsService.fetchTopHeadlinesNews(endPoint: EndpointCase.fetchNews)
+            // 1. Filter by removed articles
             var filtered = filterRemovedArticles(articles: news.articles)
+            // 2. Filter by null images
             filtered = filterHasImage(articles: filtered)
             self.articles = filtered
             self.delegate?.reload()
@@ -43,7 +45,10 @@ final class FeedViewModel: FeedViewModelProtocol {
             print(error)
         }
     }
-
+    
+    /// Removes all articles with the name 'Removed'
+    /// - Parameter articles: All articles fetched
+    /// - Returns: Filtered removed articles
     func filterRemovedArticles(articles: [ArticleModel]) -> [ArticleModel] {
         return articles.filter { article in
             guard let title = article.title else { return false}
@@ -51,6 +56,9 @@ final class FeedViewModel: FeedViewModelProtocol {
         }
     }
     
+    /// Filters all articles with null images
+    /// - Parameter articles: All articles
+    /// - Returns: Only articles with pictures
     func filterHasImage(articles: [ArticleModel]) -> [ArticleModel] {
         return articles.filter { article in
             guard let image = article.urlToImage else { return false }

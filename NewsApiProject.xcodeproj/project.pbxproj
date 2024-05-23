@@ -28,6 +28,7 @@
 		DB64CF812BFA69C100399CD2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF802BFA69C100399CD2 /* NetworkError.swift */; };
 		DB64CF882BFA7D9900399CD2 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF872BFA7D9900399CD2 /* FeedViewModel.swift */; };
 		DB64CF8A2BFA812B00399CD2 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB64CF892BFA812B00399CD2 /* ArticleCell.swift */; };
+		DBE509CD2BFFE02C00AEED57 /* UIImageView+loadURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE509CC2BFFE02C00AEED57 /* UIImageView+loadURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		DB64CF802BFA69C100399CD2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DB64CF872BFA7D9900399CD2 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		DB64CF892BFA812B00399CD2 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
+		DBE509CC2BFFE02C00AEED57 /* UIImageView+loadURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+loadURL.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				DB64CF262BFA550100399CD2 /* Assets.xcassets */,
 				DB64CF282BFA550100399CD2 /* LaunchScreen.storyboard */,
 				DB64CF2B2BFA550100399CD2 /* Info.plist */,
+				DBE509CA2BFFE00000AEED57 /* Utils */,
 				DB64CF672BFA5D0000399CD2 /* Service */,
 			);
 			path = NewsApiProject;
@@ -265,6 +268,22 @@
 				DB1E1B3B2BFD936E000F4757 /* Components */,
 			);
 			path = FeedNews;
+			sourceTree = "<group>";
+		};
+		DBE509CA2BFFE00000AEED57 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DBE509CB2BFFE01100AEED57 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		DBE509CB2BFFE01100AEED57 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DBE509CC2BFFE02C00AEED57 /* UIImageView+loadURL.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,6 +431,7 @@
 				DB64CF812BFA69C100399CD2 /* NetworkError.swift in Sources */,
 				DB64CF8A2BFA812B00399CD2 /* ArticleCell.swift in Sources */,
 				DB64CF6F2BFA5DAF00399CD2 /* NewsAPIServiceProtocol.swift in Sources */,
+				DBE509CD2BFFE02C00AEED57 /* UIImageView+loadURL.swift in Sources */,
 				DB64CF7B2BFA693B00399CD2 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

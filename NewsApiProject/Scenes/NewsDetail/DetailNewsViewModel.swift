@@ -12,8 +12,10 @@ protocol DetailNewsViewProtocol {
 }
 
 final class DetailNewsViewModel: DetailNewsViewProtocol {
+    /// Create dateFormatter with UTC time format
+    /// - Parameter dateString: UTC time format
+    /// - Returns: "h:mm a, E MMM d, yyyy" format
     func formattedDate(dateString: String) -> String {
-        // create dateFormatter with UTC time format
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?

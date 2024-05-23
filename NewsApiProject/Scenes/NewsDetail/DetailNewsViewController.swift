@@ -73,7 +73,6 @@ final class DetailNewsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.textAlignment = .left
-//        label.font = .systemFont(ofSize: 14, weight: .medium)
         label.font = .italicSystemFont(ofSize: 14)
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
@@ -196,7 +195,6 @@ extension DetailNewsViewController {
             articleImage.topAnchor.constraint(equalTo: self.articlePublishedDate.bottomAnchor, constant: 16),
             articleImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             articleImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
-//            articleImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, constant: -24),
             articleImage.heightAnchor.constraint(equalTo: self.articleImage.widthAnchor, multiplier: 9/16)
         ])
     }
