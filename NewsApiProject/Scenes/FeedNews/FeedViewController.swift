@@ -42,7 +42,7 @@ final class FeedViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .systemBackground
         tableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.identifier)
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.rowHeight = 300
         return tableView
     }()

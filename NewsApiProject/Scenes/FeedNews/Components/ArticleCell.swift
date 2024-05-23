@@ -79,7 +79,7 @@ class ArticleCell: UITableViewCell {
         label.textColor = .label
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 10, weight: .medium)
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         label.lineBreakMode = .byTruncatingTail
         label.text = "Error"
         return label
@@ -122,7 +122,7 @@ extension ArticleCell {
     private func articleImageConstraints() {
         articleImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            articleImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
+            articleImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             articleImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             articleImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             articleImage.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 9/16)
