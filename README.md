@@ -5,7 +5,7 @@
 **Descrição: **
 O desafio consiste em criar um aplicativo de notícias para iOS em Swift usando a framework UIKit e construindo o layout usando Viewcode.
 
-**Resumo do desafio:**
+*Resumo do desafio:*
 • O App deverá conter duas telas
 • Na primeira tela, exibir do artigo as imagens, autores, títulos e as
 descrições utilizando UITableView ou UICollectionView
