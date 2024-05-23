@@ -36,8 +36,8 @@ final class DetailNewsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 12, weight: .bold)
-        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
         label.text = "Error"
         return label
@@ -45,9 +45,9 @@ final class DetailNewsViewController: UIViewController {
     
     private let articleAuthor: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = .label.withAlphaComponent(0.7)
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.numberOfLines = 2
         label.lineBreakMode = .byTruncatingTail
         label.text = "Error"
@@ -56,9 +56,9 @@ final class DetailNewsViewController: UIViewController {
     
     private let articlePublishedDate: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = .label.withAlphaComponent(0.7)
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
         label.text = "Error"
@@ -67,16 +67,34 @@ final class DetailNewsViewController: UIViewController {
         // TODO: - Format date
     }()
     
-    private let articleContent: UILabel = {
+    private let articleDescription: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
         label.sizeToFit()
         label.text = "Error"
         return label
+    }()
+    
+    private let articleContent: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        label.sizeToFit()
+        label.text = "Error"
+        return label
+    }()
+    
+    private let divider: UIView = {
+        let diver = UIView()
+        diver.backgroundColor = .gray.withAlphaComponent(0.2)
+        return diver
     }()
     
     // MARK: - Life Cycle
@@ -99,16 +117,12 @@ final class DetailNewsViewController: UIViewController {
     func setupWith(_ article: ArticleModel) {
         
         self.articleTitle.text = article.title
-        self.articleAuthor.text =  "Author: \(article.author ?? "unnamed")"
+        self.articleAuthor.text =  "By \(article.author ?? "unnamed")"
+        self.articleDescription.text = article.description
+        self.articleContent.text = article.content
         
         if let publishedAt = article.publishedAt {
-            self.articlePublishedDate.text = viewModel.formattedDate(dateString: publishedAt)
-        }
-
-        if let articleContent = article.content {
-            self.articleContent.text = article.content
-        } else {
-            self.articleContent.text = article.description
+            self.articlePublishedDate.text = "Published " + viewModel.formattedDate(dateString: publishedAt)
         }
         
         if let url = URL(string: article.urlToImage ?? "") {
@@ -131,7 +145,9 @@ extension DetailNewsViewController {
         self.contentView.addSubview(articleTitle)
         self.contentView.addSubview(articlePublishedDate)
         self.contentView.addSubview(articleAuthor)
+        self.contentView.addSubview(articleDescription)
         self.contentView.addSubview(articleContent)
+        self.contentView.addSubview(divider)
     }
     
     private func addConstraints() {
@@ -141,9 +157,12 @@ extension DetailNewsViewController {
         setArticleTitleConstraints()
         setArticlePushedDateConstraints()
         setArticleAuthorConstraints()
+        setArticleDescriptionConstraints()
         setArticleContentConstraints()
+        setDividerViewConstraints()
     }
     
+    // MARK: - Scroll View
     private func setScrollViewConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -154,6 +173,7 @@ extension DetailNewsViewController {
         ])
     }
     
+    // MARK: - Content View
     private func setContentViewConstraints() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -166,48 +186,73 @@ extension DetailNewsViewController {
         ])
     }
     
+    // MARK: - Article Image
     private func setArticleImageConstraints() {
         articleImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            articleImage.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            articleImage.topAnchor.constraint(equalTo: self.articlePublishedDate.bottomAnchor, constant: 16),
             articleImage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             articleImage.widthAnchor.constraint(equalTo: self.contentView.widthAnchor),
             articleImage.heightAnchor.constraint(equalTo: self.articleImage.widthAnchor, multiplier: 9/16)
         ])
     }
     
+    // MARK: - Article Title
     private func setArticleTitleConstraints() {
         articleTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            articleTitle.topAnchor.constraint(equalTo: articleImage.bottomAnchor, constant: 8),
-            articleTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8),
-            articleTitle.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8)
+            articleTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            articleTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            articleTitle.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16)
         ])
     }
     
+    // MARK: - Article Published Date
     private func setArticlePushedDateConstraints() {
         articlePublishedDate.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            articlePublishedDate.topAnchor.constraint(equalTo: self.articleTitle.bottomAnchor, constant: 8),
-            articlePublishedDate.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8)
+            articlePublishedDate.topAnchor.constraint(equalTo: self.articleAuthor.bottomAnchor, constant: 4),
+            articlePublishedDate.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16)
         ])
     }
     
+    // MARK: - Article Author
     private func setArticleAuthorConstraints() {
         articleAuthor.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            articleAuthor.topAnchor.constraint(equalTo: self.articleTitle.bottomAnchor, constant: 8),
-            articleAuthor.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8),
-            articleAuthor.trailingAnchor.constraint(equalTo: self.articlePublishedDate.leadingAnchor, constant: -8)
+            articleAuthor.topAnchor.constraint(equalTo: self.articleTitle.bottomAnchor, constant: 24),
+            articleAuthor.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            articleAuthor.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16)
         ])
     }
     
+    // MARK: - Article Description
+    private func setArticleDescriptionConstraints() {
+        articleDescription.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            articleDescription.topAnchor.constraint(equalTo: articleImage.bottomAnchor, constant: 16),
+            articleDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            articleDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+    
+    // MARK: - Article Content
     private func setArticleContentConstraints() {
         articleContent.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            articleContent.topAnchor.constraint(equalTo: articleAuthor.bottomAnchor, constant: 8),
-            articleContent.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            articleContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
+            articleContent.topAnchor.constraint(equalTo: articleDescription.bottomAnchor, constant: 24),
+            articleContent.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            articleContent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+        ])
+    }
+    
+    private func setDividerViewConstraints() {
+        divider.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            divider.topAnchor.constraint(equalTo: articleDescription.bottomAnchor, constant: 8),
+            divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            divider.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
 }

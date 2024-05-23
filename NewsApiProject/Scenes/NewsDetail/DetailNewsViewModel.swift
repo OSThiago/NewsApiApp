@@ -21,7 +21,7 @@ final class DetailNewsViewModel: DetailNewsViewProtocol {
         guard let date = dateFormatter.date(from: dateString) else { return "unkown"}
 
         // change to a readable time format and change to local time zone
-        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
+        dateFormatter.dateFormat = "h:mm a, E MMM d, yyyy"
         dateFormatter.timeZone = NSTimeZone.local
         let timeStamp = dateFormatter.string(from: date)
         return timeStamp

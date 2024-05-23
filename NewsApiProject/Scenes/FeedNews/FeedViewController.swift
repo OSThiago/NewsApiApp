@@ -92,7 +92,7 @@ extension FeedViewController: UITableViewDelegate {
         let detailViewController = DetailNewsViewController()
         detailViewController.setupWith(viewModel.articles[indexPath.row])
 
-        detailViewController.title = "Detail"
+//        detailViewController.title = "Detail"
         
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
