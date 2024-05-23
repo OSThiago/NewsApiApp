@@ -13,17 +13,7 @@ final class FeedViewController: UIViewController {
     private lazy var viewModel = FeedViewModel(newsService: newsService,
                                               feedViewModelDelegate: self)
     
-    // MARK: - UI Components
-    let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
-        tableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.identifier)
-        tableView.separatorStyle = .none
-        tableView.rowHeight = 300
-        return tableView
-    }()
-    
-    // MARK: - Life cycle
+    // MARK: - Life Cycle
     init(newsService: NewsAPIServiceProtocol) {
         self.newsService = newsService
         super.init(nibName: nil, bundle: nil)
@@ -43,9 +33,19 @@ final class FeedViewController: UIViewController {
     }
     
     private func setupUI() {
-        setupTitle(title: "News")
+        self.title = "News"
         setupTableView()
     }
+    
+    // MARK: - UI Components
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .systemBackground
+        tableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.identifier)
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 300
+        return tableView
+    }()
     
     private func setupTableView() {
         self.view.addSubview(tableView)
@@ -53,12 +53,9 @@ final class FeedViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
-    
-    private func setupTitle(title: String) {
-        self.title = title
-    }
 }
 
+// MARK: - FeedViewModelDelegate
 extension FeedViewController: FeedViewModelDelegate {
     func reload() {
         DispatchQueue.main.async {
@@ -67,14 +64,14 @@ extension FeedViewController: FeedViewModelDelegate {
     }
 }
 
+// MARK: - UITableView DataSource
 extension FeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.articles.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.identifier,
-                                                       for: indexPath) as? ArticleCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.identifier, for: indexPath) as? ArticleCell else {
             fatalError("Unebale to dequeue ArtcleCell in FeedViewController")
         }
         
@@ -84,15 +81,21 @@ extension FeedViewController: UITableViewDataSource {
 
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-////        return 300
-//        return UITableView.automaticDimension
-//    }
 }
 
+// MARK: - UITableView Delegate
 extension FeedViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let detailViewController = DetailNewsViewController()
+        detailViewController.setupWith(viewModel.articles[indexPath.row])
+
+        detailViewController.title = "Detail"
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 

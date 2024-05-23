@@ -10,10 +10,10 @@ import Foundation
 public struct NewsModel: Decodable {
     public let status: String
     public let totalResults: Int
-    public let articles: [ArticlesModel]
+    public let articles: [ArticleModel]
 }
 
-public struct ArticlesModel: Decodable {
+public struct ArticleModel: Decodable {
     public let source: SourceModel
     public let author: String?
     public let title: String?

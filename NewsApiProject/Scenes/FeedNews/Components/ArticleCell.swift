@@ -29,7 +29,7 @@ class ArticleCell: UITableViewCell {
     
     // MARK: - Configuration
     
-    func setupWith(_ article: ArticlesModel) {
+    func setupWith(_ article: ArticleModel) {
         self.title.text = article.title
         self.articleDescription.text = article.description
         
@@ -98,7 +98,7 @@ class ArticleCell: UITableViewCell {
     }()
 }
 
-// MARK: - Setup
+// MARK: - Setup UI Components
 extension ArticleCell {
     private func setupView() {
         addViews()
@@ -142,7 +142,8 @@ extension ArticleCell {
         author.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             author.topAnchor.constraint(equalTo: self.articleImage.bottomAnchor, constant: 6),
-            author.leadingAnchor.constraint(equalTo: self.title.leadingAnchor)
+            author.leadingAnchor.constraint(equalTo: self.title.leadingAnchor),
+            author.trailingAnchor.constraint(equalTo: self.title.trailingAnchor)
         ])
     }
     

@@ -8,9 +8,9 @@
 import Foundation
 
 protocol FeedViewModelProtocol {
-    var articles: [ArticlesModel] { get set }
+    var articles: [ArticleModel] { get set }
     func fetchArticles() async throws
-    func filterRemovedArticles(articles: [ArticlesModel]) -> [ArticlesModel]
+    func filterRemovedArticles(articles: [ArticleModel]) -> [ArticleModel]
 }
 
 protocol FeedViewModelDelegate: AnyObject {
@@ -22,7 +22,7 @@ final class FeedViewModel: FeedViewModelProtocol {
     private let newsService: NewsAPIServiceProtocol
     private weak var delegate: FeedViewModelDelegate?
 
-    var articles: [ArticlesModel] = []
+    var articles: [ArticleModel] = []
 
     init(newsService: NewsAPIServiceProtocol,
          feedViewModelDelegate: FeedViewModelDelegate
@@ -42,7 +42,7 @@ final class FeedViewModel: FeedViewModelProtocol {
         }
     }
 
-    func filterRemovedArticles(articles: [ArticlesModel]) -> [ArticlesModel] {
+    func filterRemovedArticles(articles: [ArticleModel]) -> [ArticleModel] {
         return articles.filter { article in
             guard let title = article.title else { return false}
             return !title.contains("Removed")
