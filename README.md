@@ -2,7 +2,7 @@
  
 **Projeto desafio para construção de um App de notícia**
 
-**Descrição**
+**Descrição: **
 O desafio consiste em criar um aplicativo de notícias para iOS em Swift usando a framework UIKit e construindo o layout usando Viewcode.
 
 **Resumo do desafio:**
