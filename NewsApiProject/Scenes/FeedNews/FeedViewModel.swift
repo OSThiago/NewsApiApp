@@ -11,6 +11,7 @@ protocol FeedViewModelProtocol {
     var articles: [ArticleModel] { get set }
     func fetchArticles() async throws
     func filterRemovedArticles(articles: [ArticleModel]) -> [ArticleModel]
+    func filterHasImage(articles: [ArticleModel]) -> [ArticleModel]
 }
 
 protocol FeedViewModelDelegate: AnyObject {
@@ -34,7 +35,8 @@ final class FeedViewModel: FeedViewModelProtocol {
     func fetchArticles() async throws {
         do {
             let news = try await newsService.fetchTopHeadlinesNews(endPoint: EndpointCase.fetchNews)
-            let filtered = filterRemovedArticles(articles: news.articles)
+            var filtered = filterRemovedArticles(articles: news.articles)
+            filtered = filterHasImage(articles: filtered)
             self.articles = filtered
             self.delegate?.reload()
         } catch {
@@ -46,6 +48,13 @@ final class FeedViewModel: FeedViewModelProtocol {
         return articles.filter { article in
             guard let title = article.title else { return false}
             return !title.contains("Removed")
+        }
+    }
+    
+    func filterHasImage(articles: [ArticleModel]) -> [ArticleModel] {
+        return articles.filter { article in
+            guard let image = article.urlToImage else { return false }
+            return true
         }
     }
 }
