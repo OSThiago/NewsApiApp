@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SafariServices
 
 final class DetailNewsViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: DetailNewsViewProtocol
+    private var articleModel: ArticleModel?
     
     // MARK: - UI Components
     private let scrollView: UIScrollView = {
@@ -99,6 +101,15 @@ final class DetailNewsViewController: UIViewController {
         return diver
     }()
     
+    private let sourceButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Open News Source", for: .normal)
+        button.backgroundColor = .systemRed
+        button.layer.cornerRadius = 8
+        button.clipsToBounds = true
+        return button
+    }()
+    
     // MARK: - Life Cycle
     
     init() {
@@ -114,10 +125,12 @@ final class DetailNewsViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         self.navigationItem.largeTitleDisplayMode = .never
+        
+        sourceButton.addTarget(self, action:#selector(self.openSourceAction), for: .touchUpInside)
     }
     
     func setupWith(_ article: ArticleModel) {
-        
+        self.articleModel = article
         self.articleTitle.text = article.title
         self.articleAuthor.text =  "By \(article.author ?? "unnamed")"
         self.articleDescription.text = article.description
@@ -130,6 +143,12 @@ final class DetailNewsViewController: UIViewController {
         if let url = URL(string: article.urlToImage ?? "") {
             articleImage.load(url: url)
         }
+    }
+    
+    @objc func openSourceAction() {
+        guard let articleURL = URL(string: articleModel?.url ?? "") else { return }
+        let safariViewController = SFSafariViewController(url: articleURL)
+        present(safariViewController, animated: true, completion: nil)
     }
 }
 
@@ -150,6 +169,7 @@ extension DetailNewsViewController {
         self.contentView.addSubview(articleDescription)
         self.contentView.addSubview(articleContent)
         self.contentView.addSubview(divider)
+        self.contentView.addSubview(sourceButton)
     }
     
     private func addConstraints() {
@@ -162,6 +182,7 @@ extension DetailNewsViewController {
         setArticleDescriptionConstraints()
         setArticleContentConstraints()
         setDividerViewConstraints()
+        setSourceButtonConstraints()
     }
     
     // MARK: - Scroll View
@@ -248,6 +269,7 @@ extension DetailNewsViewController {
         ])
     }
     
+    // MARK: - Divider
     private func setDividerViewConstraints() {
         divider.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -255,6 +277,17 @@ extension DetailNewsViewController {
             divider.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             divider.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             divider.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
+    // MARK: - Float button
+    private func setSourceButtonConstraints() {
+        sourceButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            sourceButton.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -24),
+            sourceButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            sourceButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            sourceButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
