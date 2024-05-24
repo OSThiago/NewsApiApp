@@ -27,7 +27,7 @@ final class DetailNewsViewController: UIViewController {
     private let articleImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(systemName: "questionmark")
+        imageView.image = UIImage(systemName: "newspaper")
         imageView.tintColor = .black
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
