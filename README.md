@@ -4,7 +4,7 @@
 
 O desafio consiste em criar um aplicativo de notícias para iOS em Swift usando a framework UIKit e construindo o layout usando Viewcode.
 
-https://github.com/OSThiago/NewsApiApp/assets/52988009/030678a6-f604-439e-a963-e9bcc2414bf9
+https://github.com/OSThiago/NewsApiApp/assets/52988009/311a9ebe-e4af-450d-b53f-5147ee07dc90
 
 ### Resumo do desafio:
 - O App deverá conter duas telas
