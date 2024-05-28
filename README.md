@@ -31,7 +31,7 @@ publicação e o conteúdo do artigo, respectivamente
 - Primeiro passo foi testar a API de notícias. Para isso usei o Postman para testar as requisições e entender quais são os dados que a api retorna e quais são os possíveis erros.
 https://www.postman.com
 
-- Segundo passo foi pensar em um layour para a tela. Para isso, visitei vários sites de notícias pelo celular e alguns projetos no Behance.
+- Segundo passo foi pensar em um layout para a tela. Para isso, visitei vários sites de notícias pelo celular e alguns projetos no Behance.
 - Sites de notícias
   - https://www.bbc.com/news
   - https://news.google.com/home?hl=pt-BR&gl=BR&ceid=BR:pt-419
