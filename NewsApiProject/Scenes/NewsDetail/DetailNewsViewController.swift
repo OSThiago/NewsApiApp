@@ -140,8 +140,10 @@ final class DetailNewsViewController: UIViewController {
             self.articlePublishedDate.text = "Published " + viewModel.formattedDate(dateString: publishedAt)
         }
         
-        if let url = URL(string: article.urlToImage ?? "") {
-            articleImage.load(url: url)
+        if let imageURL = article.urlToImage {
+            self.articleImage.loadImage(urlString: imageURL,
+                                        placeholderImage: nil,
+                                        errorImage: nil)
         }
     }
     

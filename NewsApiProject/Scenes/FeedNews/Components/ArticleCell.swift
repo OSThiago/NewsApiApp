@@ -37,8 +37,10 @@ class ArticleCell: UITableViewCell {
             self.author.text = "By " + author
         }
         
-        if let url = URL(string: article.urlToImage ?? "") {
-            self.articleImage.load(url: url)
+        if let imageURL = article.urlToImage {
+            self.articleImage.loadImage(urlString: imageURL,
+                                        placeholderImage: nil,
+                                        errorImage: nil)
         }
     }
     
